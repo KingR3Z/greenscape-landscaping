@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import LenisProvider from "@/components/layout/LenisProvider";
 import CustomCursor from "@/components/layout/CustomCursor";
 import Preloader from "@/components/layout/Preloader";
@@ -16,16 +16,24 @@ import FullCTA from "@/components/sections/FullCTA";
 
 export default function Home() {
   const [preloaderDone, setPreloaderDone] = useState(false);
+  const [sidebarImages, setSidebarImages] = useState<{ current: string; next: string }>({
+    current: "/images/hero-bg.jpg",
+    next: "/images/projects/project-01.jpg",
+  });
+
+  const handleSlideChange = useCallback((currentImage: string, nextImage: string) => {
+    setSidebarImages({ current: currentImage, next: nextImage });
+  }, []);
 
   return (
     <LenisProvider>
       <Preloader onComplete={() => setPreloaderDone(true)} />
       {preloaderDone && <CustomCursor />}
       <Navigation />
-      <SidebarStrip />
+      <SidebarStrip currentImage={sidebarImages.current} nextImage={sidebarImages.next} />
 
       <main style={{ marginRight: "var(--sidebar-width)" }}>
-        <Hero />
+        <Hero onSlideChange={handleSlideChange} />
         <About />
         <FeaturedProjects />
         <BlueprintReveal />

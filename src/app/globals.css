@@ -31,7 +31,7 @@
   --section-padding: clamp(80px, 10vw, 160px);
   --container-max: 1440px;
   --container-padding: clamp(20px, 4vw, 80px);
-  --sidebar-width: 200px;
+  --sidebar-width: 20vw;
 
   /* Typography scale matching Cedar Springs */
   --h1-size: clamp(48px, 6vw, 88px);
@@ -63,7 +63,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), "DM Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.625;
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display), "Epilogue", sans-serif;
 }
 
 @media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }
@@ -132,7 +138,15 @@ img { transition: opacity 0.3s ease; }
   pointer-events: none;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1279px) {
   :root { --sidebar-width: 0px; }
   .sidebar-strip { display: none; }
+}
+
+@media (min-width: 1280px) and (max-width: 1599px) {
+  :root { --sidebar-width: 18vw; }
+}
+
+@media (min-width: 1600px) {
+  :root { --sidebar-width: 20vw; }
 }

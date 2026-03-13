@@ -154,18 +154,18 @@ export default function FeaturedProjects() {
               priority={i < 2}
               loading={i < 2 ? 'eager' : 'lazy'}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
 
-            {/* Slide content */}
+            {/* Slide content — simplified like Cedar Springs (label + title only) */}
             <div
               className="absolute inset-0 flex flex-col justify-end"
               style={{ padding: 'var(--container-padding)', paddingBottom: '100px' }}
             >
-              <span className="slide-text text-white/70 text-sm tracking-wider uppercase mb-3">
+              <span className="slide-text text-white/60 text-sm tracking-[0.15em] uppercase mb-3 font-display">
                 Featured Project
               </span>
               <h3
-                className="slide-text font-display text-white mb-6"
+                className="slide-text font-display text-white"
                 style={{
                   fontSize: 'var(--h2-size)',
                   fontWeight: 'var(--h2-weight)',
@@ -175,31 +175,6 @@ export default function FeaturedProjects() {
               >
                 {project.title}
               </h3>
-              <p className="slide-text text-white/80 text-base max-w-xl leading-relaxed mb-8 hidden md:block">
-                {project.description}
-              </p>
-
-              {/* Metadata grid */}
-              <div className="slide-text grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
-                <div>
-                  <span className="text-white/50 text-xs uppercase tracking-wider block mb-1">location</span>
-                  <span className="text-white text-sm">{project.location}</span>
-                </div>
-                {project.budget && (
-                  <div>
-                    <span className="text-white/50 text-xs uppercase tracking-wider block mb-1">budget</span>
-                    <span className="text-white text-sm">{project.budget}</span>
-                  </div>
-                )}
-                <div>
-                  <span className="text-white/50 text-xs uppercase tracking-wider block mb-1">design time</span>
-                  <span className="text-white text-sm">{project.designTime}</span>
-                </div>
-                <div>
-                  <span className="text-white/50 text-xs uppercase tracking-wider block mb-1">installation time</span>
-                  <span className="text-white text-sm">{project.installationTime}</span>
-                </div>
-              </div>
             </div>
           </div>
         ))}
@@ -244,16 +219,6 @@ export default function FeaturedProjects() {
           </button>
         </div>
 
-        {/* Scroll indicator on slide */}
-        <div
-          className="absolute right-8 lg:right-[calc(var(--sidebar-width)+30px)] bottom-1/4 z-10 flex flex-col items-center gap-2 hidden md:flex"
-          style={{ writingMode: 'vertical-rl' }}
-        >
-          <span className="text-white/50 text-xs tracking-[0.2em] uppercase">scroll</span>
-          <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
-            <path d="M6 0v18M1 13l5 5 5-5" stroke="white" strokeOpacity="0.5" strokeWidth="1.5" />
-          </svg>
-        </div>
       </div>
     </section>
   );
