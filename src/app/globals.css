@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-primary: #ffffff;
+  --color-bg-dark: #0C1F0E;
+  --color-text-dark: #212123;
+  --color-text-light: #ffffff;
+  --color-text-muted: #6B6B6B;
+  --color-accent: #1B5E20;
+  --color-accent-secondary: #2E7D32;
+  --color-accent-light: #C8E6C9;
+  --color-warm: #5D4037;
+  --color-highlight: #FFB300;
+  --color-grey-900: #161616;
+  --color-grey-800: #1a1a1a;
+  --color-grey-700: #2a2a2a;
+  --color-grey-600: #333333;
+  --color-grey-500: #656565;
+  --color-grey-400: #888888;
+  --color-grey-300: #aaaaaa;
+  --color-grey-200: #cccccc;
+  --color-grey-100: #e5e5e5;
+  --font-display: var(--font-epilogue);
+  --font-body: var(--font-dm-sans);
+  --font-accent: var(--font-playfair);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #212123;
+  --section-padding: clamp(80px, 10vw, 160px);
+  --container-max: 1440px;
+  --container-padding: clamp(20px, 4vw, 80px);
+  --sidebar-width: 200px;
+
+  /* Typography scale matching Cedar Springs */
+  --h1-size: clamp(48px, 6vw, 88px);
+  --h1-weight: 300;
+  --h1-letter-spacing: -1.76px;
+  --h1-line-height: 1.02;
+
+  --h2-size: clamp(36px, 4.5vw, 64px);
+  --h2-weight: 400;
+  --h2-letter-spacing: -1.28px;
+  --h2-line-height: 1.17;
+
+  --h3-size: clamp(24px, 2.5vw, 36px);
+  --h3-weight: 400;
+  --h3-letter-spacing: -0.72px;
+
+  --cta-text-size: clamp(18px, 1.5vw, 24px);
+  --body-size: 16px;
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+::selection { background: var(--color-accent); color: var(--color-text-light); }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }
+@media (hover: none) and (pointer: coarse) {
+  * { cursor: auto !important; }
+  .custom-cursor { display: none !important; }
+}
+
+.line-mask { overflow: hidden; display: block; }
+.magnetic-wrap { position: relative; display: inline-flex; }
+
+.section-padding {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+.container-custom {
+  max-width: var(--container-max);
+  margin-left: auto; margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+img { transition: opacity 0.3s ease; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+.video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Display font utility */
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+/* CTA link arrow animation */
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display), sans-serif;
+  transition: gap 0.3s ease;
+}
+.cta-link:hover { gap: 18px; }
+.cta-link .cta-separator {
+  width: 1px;
+  height: 1.2em;
+  background: currentColor;
+  opacity: 0.3;
+}
+.cta-link .cta-arrow {
+  transition: transform 0.3s ease;
+}
+.cta-link:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Sidebar strip */
+.sidebar-strip {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  z-index: 500;
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  :root { --sidebar-width: 0px; }
+  .sidebar-strip { display: none; }
+}
