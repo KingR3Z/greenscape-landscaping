@@ -73,7 +73,7 @@ export default function FullCTA() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden" style={{ minHeight: '80vh' }}>
+    <section ref={sectionRef} className="relative overflow-hidden" style={{ minHeight: '80vh', width: 'calc(100% + var(--sidebar-width, 0px))' }}>
       {/* Background image with parallax */}
       <div ref={imageRef} className="absolute inset-0 w-full h-[130%] -top-[15%]">
         <Image

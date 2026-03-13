@@ -126,11 +126,15 @@ export default function FeaturedProjects() {
         </h2>
       </div>
 
-      {/* Carousel */}
+      {/* Carousel — extends behind sidebar like Cedar Springs */}
       <div
         ref={slidesContainerRef}
-        className="relative w-full overflow-hidden"
-        style={{ height: '85vh', minHeight: '600px' }}
+        className="relative overflow-hidden"
+        style={{
+          height: '85vh',
+          minHeight: '600px',
+          width: 'calc(100% + var(--sidebar-width, 0px))',
+        }}
         data-cursor="view"
       >
         {projects.map((project, i) => (
@@ -179,34 +183,45 @@ export default function FeaturedProjects() {
           </div>
         ))}
 
-        {/* Navigation arrows */}
-        <div className="absolute bottom-6 left-0 z-10 flex items-center gap-6" style={{ paddingLeft: 'var(--container-padding)' }}>
-          <button
-            onClick={goPrev}
-            className="text-white/80 hover:text-white transition-colors duration-300"
-            data-cursor="link"
-            aria-label="Previous project"
-          >
-            <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
-              <path d="M0 8h30M8 1L1 8l7 7" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
-          </button>
+        {/* Navigation arrows — spread layout like Cedar Springs */}
+        <div
+          className="absolute bottom-6 left-0 z-10 flex items-center justify-between"
+          style={{
+            paddingLeft: 'var(--container-padding)',
+            paddingRight: 'var(--container-padding)',
+            width: 'calc(100% - var(--sidebar-width, 0px))',
+          }}
+        >
+          {/* Left group: prev arrow + dots */}
+          <div className="flex items-center gap-8">
+            <button
+              onClick={goPrev}
+              className="text-white/80 hover:text-white transition-colors duration-300"
+              data-cursor="link"
+              aria-label="Previous project"
+            >
+              <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+                <path d="M0 8h30M8 1L1 8l7 7" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+            </button>
 
-          {/* Dot navigation */}
-          <div className="flex items-center gap-2">
-            {projects.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goToSlide(i)}
-                className={`h-[2px] transition-all duration-500 ${
-                  i === activeIndex ? 'w-8 bg-white' : 'w-4 bg-white/40'
-                }`}
-                data-cursor="link"
-                aria-label={`Go to project ${i + 1}`}
-              />
-            ))}
+            {/* Dot navigation */}
+            <div className="flex items-center gap-2">
+              {projects.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goToSlide(i)}
+                  className={`h-[2px] transition-all duration-500 ${
+                    i === activeIndex ? 'w-8 bg-white' : 'w-4 bg-white/40'
+                  }`}
+                  data-cursor="link"
+                  aria-label={`Go to project ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
+          {/* Right arrow */}
           <button
             onClick={goNext}
             className="text-white/80 hover:text-white transition-colors duration-300"

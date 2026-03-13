@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function BlueprintReveal() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -22,9 +22,9 @@ export default function BlueprintReveal() {
         const words = textRef.current.querySelectorAll('.word');
         gsap.fromTo(
           words,
-          { opacity: 0.08 },
+          { opacity: 0.05 },
           {
-            opacity: 1,
+            opacity: 0.25,
             stagger: 0.08,
             ease: 'none',
             scrollTrigger: {
@@ -37,19 +37,19 @@ export default function BlueprintReveal() {
         );
       }
 
-      // Blueprint image scale + clip reveal
+      // Blueprint image scale reveal
       if (imageRef.current) {
         gsap.fromTo(
           imageRef.current,
-          { scale: 1.15, clipPath: 'inset(8% 8% 8% 8%)' },
+          { scale: 1.1, opacity: 0 },
           {
             scale: 1,
-            clipPath: 'inset(0% 0% 0% 0%)',
+            opacity: 1,
             ease: 'none',
             scrollTrigger: {
-              trigger: imageRef.current,
-              start: 'top 80%',
-              end: 'bottom 40%',
+              trigger: sectionRef.current,
+              start: 'top 70%',
+              end: 'center center',
               scrub: 1,
             },
           }
@@ -80,42 +80,82 @@ export default function BlueprintReveal() {
   const words = blueprintRevealData.heading.split(' ');
 
   return (
-    <section ref={sectionRef} className="bg-white" id="process">
-      <div className="container-custom section-padding">
-        <h2
-          ref={textRef}
-          className="font-display mb-16 max-w-3xl"
-          style={{
-            fontSize: 'var(--h2-size)',
-            fontWeight: 'var(--h2-weight)',
-            letterSpacing: 'var(--h2-letter-spacing)',
-            lineHeight: 'var(--h2-line-height)',
-            color: '#212123',
-          }}
+    <section
+      ref={sectionRef}
+      className="relative bg-white overflow-hidden"
+      id="process"
+      style={{ width: 'calc(100% + var(--sidebar-width, 0px))' }}
+    >
+      <div className="relative" style={{ minHeight: '90vh' }}>
+        {/* Blueprint image as background — centered, extends behind sidebar */}
+        <div
+          ref={imageRef}
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ opacity: 0 }}
         >
-          {words.map((word, i) => (
-            <span key={i} className="word inline-block mr-[0.3em]" style={{ opacity: 0.08 }}>
-              {word}
-            </span>
-          ))}
-        </h2>
-
-        <div ref={ctaRef} className="mb-16" style={{ opacity: 0 }}>
-          <CTALink label={blueprintRevealData.cta.label} href={blueprintRevealData.cta.href} />
-        </div>
-      </div>
-
-      {/* Blueprint image with scale reveal */}
-      <div className="overflow-hidden">
-        <div ref={imageRef} className="w-full" style={{ clipPath: 'inset(8% 8% 8% 8%)' }}>
           <Image
             src={blueprintRevealData.image}
             alt="Garden architectural design blueprint"
             width={1920}
             height={1000}
-            className="w-full h-auto object-cover"
+            className="w-[90%] h-auto max-h-[80vh] object-contain"
             sizes="100vw"
+            style={{ opacity: 0.7 }}
           />
+        </div>
+
+        {/* Decorative circles overlay — matching Cedar Springs */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute rounded-full border border-[#bbb]/40"
+            style={{ width: '22vw', height: '22vw', top: '10%', left: '25%' }}
+          />
+          <div
+            className="absolute rounded-full border border-[#bbb]/40"
+            style={{ width: '18vw', height: '18vw', top: '8%', left: '48%' }}
+          />
+          <div
+            className="absolute rounded-full border border-[#bbb]/40"
+            style={{ width: '26vw', height: '26vw', bottom: '5%', left: '20%' }}
+          />
+          <div
+            className="absolute rounded-full border border-[#bbb]/40"
+            style={{ width: '30vw', height: '30vw', top: '15%', right: '-5%' }}
+          />
+        </div>
+
+        {/* Text content — faded, overlaid on blueprint like Cedar Springs */}
+        <div
+          className="relative z-10 flex flex-col justify-center"
+          style={{
+            minHeight: '90vh',
+            paddingLeft: 'var(--container-padding)',
+            paddingRight: 'var(--container-padding)',
+            paddingTop: '120px',
+            paddingBottom: '120px',
+          }}
+        >
+          <h2
+            ref={textRef}
+            className="font-display mb-16 max-w-4xl"
+            style={{
+              fontSize: 'clamp(40px, 5.5vw, 80px)',
+              fontWeight: 300,
+              letterSpacing: '-1.5px',
+              lineHeight: 1.15,
+              color: '#212123',
+            }}
+          >
+            {words.map((word, i) => (
+              <span key={i} className="word inline-block mr-[0.3em]" style={{ opacity: 0.05 }}>
+                {word}
+              </span>
+            ))}
+          </h2>
+
+          <div ref={ctaRef} style={{ opacity: 0 }}>
+            <CTALink label={blueprintRevealData.cta.label} href={blueprintRevealData.cta.href} />
+          </div>
         </div>
       </div>
     </section>

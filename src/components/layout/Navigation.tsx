@@ -160,51 +160,71 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Hamburger — sits in the sidebar strip area */}
+          {/* Hamburger — sits in the sidebar strip area (3 lines like Cedar Springs) */}
           <div
             className="hidden xl:flex items-center justify-center"
             style={{ width: "var(--sidebar-width)", flexShrink: 0 }}
           >
             <button
               ref={hamburgerRef}
-              className="flex flex-col gap-[7px] w-10 h-10 items-center justify-center"
+              className="flex flex-col gap-[6px] w-10 h-10 items-center justify-center"
               onClick={() => setMenuOpen(!menuOpen)}
               data-cursor="link"
               aria-label="Toggle menu"
               style={{ opacity: 0 }}
             >
               <span
-                className={`block w-8 h-[1.5px] transition-all duration-300 origin-center bg-white ${
-                  menuOpen ? "rotate-45 translate-y-[4.25px]" : ""
+                className={`block w-7 h-[1.5px] transition-all duration-300 origin-center bg-white ${
+                  menuOpen ? "rotate-45 translate-y-[7.5px]" : ""
                 }`}
               />
               <span
-                className={`block w-8 h-[1.5px] transition-all duration-300 origin-center bg-white ${
-                  menuOpen ? "-rotate-45 -translate-y-[4.25px]" : ""
+                className={`block w-7 h-[1.5px] transition-all duration-300 origin-center bg-white ${
+                  menuOpen ? "opacity-0 scale-x-0" : ""
+                }`}
+              />
+              <span
+                className={`block w-7 h-[1.5px] transition-all duration-300 origin-center bg-white ${
+                  menuOpen ? "-rotate-45 -translate-y-[7.5px]" : ""
                 }`}
               />
             </button>
           </div>
 
-          {/* Hamburger — mobile/tablet (visible below xl) */}
+          {/* Hamburger — mobile/tablet (visible below xl, 3 lines) */}
           <button
-            className="flex xl:hidden flex-col gap-[6px] w-8 h-8 items-center justify-center mr-4"
+            className="flex xl:hidden flex-col gap-[5px] w-8 h-8 items-center justify-center mr-4"
             onClick={() => setMenuOpen(!menuOpen)}
             data-cursor="link"
             aria-label="Toggle menu"
           >
             <span
-              className={`block w-7 h-px transition-all duration-300 origin-center bg-white ${
-                menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
+              className={`block w-6 h-px transition-all duration-300 origin-center bg-white ${
+                menuOpen ? "rotate-45 translate-y-[6px]" : ""
               }`}
             />
             <span
-              className={`block w-7 h-px transition-all duration-300 origin-center bg-white ${
-                menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+              className={`block w-6 h-px transition-all duration-300 origin-center bg-white ${
+                menuOpen ? "opacity-0 scale-x-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-px transition-all duration-300 origin-center bg-white ${
+                menuOpen ? "-rotate-45 -translate-y-[6px]" : ""
               }`}
             />
           </button>
         </div>
+        {/* Thin separator line below nav (matching Cedar Springs) */}
+        <div
+          className="absolute bottom-0 left-0 h-px bg-white/15 hidden xl:block"
+          style={{ width: "calc(100% - var(--sidebar-width))" }}
+        />
+        {/* Vertical separator between main area and sidebar */}
+        <div
+          className="absolute top-0 right-0 w-px h-full bg-white/15 hidden xl:block"
+          style={{ right: "var(--sidebar-width)" }}
+        />
       </header>
 
       {/* Fullscreen menu overlay */}

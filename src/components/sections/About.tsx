@@ -107,7 +107,7 @@ export default function About() {
                 fontSize: 'var(--h3-size)',
                 fontWeight: 'var(--h3-weight)',
                 letterSpacing: 'var(--h3-letter-spacing)',
-                color: '#212123',
+                color: '#aaaaaa',
               }}
             >
               {aboutData.subheading}
@@ -127,40 +127,36 @@ export default function About() {
             </div>
           </div>
 
-          {/* Image column */}
-          <div ref={imageColRef} className="relative">
+          {/* Image column — bleeds past sidebar like Cedar Springs */}
+          <div ref={imageColRef} className="relative" style={{ marginRight: 'calc(var(--sidebar-width) * -1)' }}>
             <div className="about-image-wrap relative overflow-hidden" style={{ clipPath: 'inset(0 100% 0 0)' }}>
               <Image
                 src={aboutData.image}
                 alt="GreenScape landscaping project"
-                width={800}
-                height={600}
+                width={1200}
+                height={800}
                 className="w-full h-auto object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 60vw"
               />
-            </div>
 
-            {/* 5-star badge */}
-            <div
-              className="about-badge absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-sm px-5 py-4 shadow-lg"
-              style={{ opacity: 0 }}
-            >
-              <span
-                className="text-5xl font-display"
-                style={{ fontWeight: 300, color: '#212123', lineHeight: 1 }}
+              {/* 5-star badge — white text on image like Cedar Springs */}
+              <div
+                className="about-badge absolute bottom-8 left-8 md:bottom-12 md:left-12 flex items-center gap-2"
+                style={{ opacity: 0 }}
               >
-                5
-              </span>
-              <div className="flex flex-col">
-                <span className="text-sm text-[#212123] flex items-center gap-1">
-                  star
-                  <span className="text-[#FFB300] flex">
-                    {'★★★★★'.split('').map((s, i) => (
-                      <span key={i}>{s}</span>
-                    ))}
-                  </span>
+                <span
+                  className="font-display text-white"
+                  style={{ fontSize: 'clamp(48px, 5vw, 72px)', fontWeight: 300, lineHeight: 1 }}
+                >
+                  5
                 </span>
-                <span className="text-sm text-[#212123]">landscapes</span>
+                <div className="flex flex-col">
+                  <span className="text-white text-sm flex items-center gap-1">
+                    star
+                    <span className="flex text-white">★★★★★</span>
+                  </span>
+                  <span className="text-white text-sm">landscapes</span>
+                </div>
               </div>
             </div>
           </div>
