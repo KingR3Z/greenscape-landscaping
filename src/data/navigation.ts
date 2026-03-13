@@ -2,9 +2,9 @@ export const mainNav = {
   cta: { label: "Start Your Garden Retreat", href: "/contact" },
   menuLinks: [
     { label: "Home", href: "/" },
-    { label: "Projects", href: "#projects" },
-    { label: "Process", href: "#process" },
-    { label: "About", href: "#about" },
+    { label: "Projects", href: "/projects" },
+    { label: "Process", href: "/process" },
+    { label: "About", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Property Care", href: "/property-care" },
     { label: "Blog", href: "/blog" },
@@ -32,13 +32,13 @@ export const footerData = {
     {
       links: [
         { label: "Home", href: "/" },
-        { label: "Projects", href: "#projects" },
-        { label: "Process", href: "#process" },
+        { label: "Projects", href: "/projects" },
+        { label: "Process", href: "/process" },
       ],
     },
     {
       links: [
-        { label: "About", href: "#about" },
+        { label: "About", href: "/about" },
         { label: "Careers", href: "/careers" },
         { label: "Property Care", href: "/property-care" },
       ],
