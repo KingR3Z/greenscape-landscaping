@@ -107,7 +107,7 @@ export default function About() {
                 fontSize: 'var(--h3-size)',
                 fontWeight: 'var(--h3-weight)',
                 letterSpacing: 'var(--h3-letter-spacing)',
-                color: '#aaaaaa',
+                color: '#606065',
               }}
             >
               {aboutData.subheading}
@@ -116,7 +116,7 @@ export default function About() {
             {aboutData.paragraphs.map((p, i) => (
               <p
                 key={i}
-                className="about-animate text-[#6B6B6B] text-base leading-relaxed mb-5"
+                className="about-animate text-[#212123] text-base leading-relaxed mb-5"
               >
                 {p}
               </p>

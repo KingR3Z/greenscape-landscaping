@@ -23,7 +23,7 @@ export default function CustomCursor() {
         width: 80,
         height: 80,
         borderColor: "rgba(255, 255, 255, 0.6)",
-        backgroundColor: "rgba(27, 94, 32, 0.85)",
+        backgroundColor: "rgba(33, 33, 35, 0.85)",
         duration: 0.3,
         ease: "power3.out",
       });
@@ -34,7 +34,7 @@ export default function CustomCursor() {
       gsap.to(ringRef.current, {
         width: 60,
         height: 60,
-        borderColor: "rgba(27, 94, 32, 0.4)",
+        borderColor: "rgba(33, 33, 35, 0.4)",
         backgroundColor: "transparent",
         duration: 0.3,
         ease: "power3.out",

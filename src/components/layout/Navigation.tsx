@@ -230,7 +230,7 @@ export default function Navigation() {
       {/* Fullscreen menu overlay */}
       <div
         ref={overlayRef}
-        className={`fixed inset-0 z-[999] bg-[#0C1F0E] flex flex-col items-start justify-center ${
+        className={`fixed inset-0 z-[999] bg-[#212123] flex flex-col items-start justify-center ${
           menuOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
         style={{ opacity: 0, paddingLeft: "var(--container-padding)" }}

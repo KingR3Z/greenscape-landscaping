@@ -32,7 +32,7 @@ export default function Home() {
       <Navigation />
       <SidebarStrip currentImage={sidebarImages.current} nextImage={sidebarImages.next} />
 
-      <main style={{ marginRight: "var(--sidebar-width)" }}>
+      <main style={{ marginRight: "var(--sidebar-width)", marginBottom: "100vh", position: "relative", zIndex: 1, backgroundColor: "#ffffff" }}>
         <Hero onSlideChange={handleSlideChange} />
         <About />
         <FeaturedProjects />

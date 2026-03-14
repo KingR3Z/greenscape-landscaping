@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import InnerPageLayout from "@/components/layout/InnerPageLayout";
-import PageHero from "@/components/sections/PageHero";
 import CTALink from "@/components/ui/CTALink";
 
 export default function ContactPage() {
@@ -31,52 +30,72 @@ export default function ContactPage() {
 
   return (
     <InnerPageLayout>
-      <PageHero
-        title="get in touch"
-        subtitle="Let's discuss your vision"
-        image="/images/cta-bg.jpg"
-        compact
-      />
-
-      <section className="bg-white section-padding">
+      {/* Page Title */}
+      <section className="bg-white" style={{ paddingTop: "170px", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
         <div className="container-custom">
-          <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            {/* Left: Info */}
+          <h1
+            className="font-display"
+            style={{
+              fontSize: "var(--h1-size)",
+              fontWeight: 300,
+              letterSpacing: "var(--h1-letter-spacing)",
+              lineHeight: "var(--h1-line-height)",
+              color: "#212123",
+            }}
+          >
+            contact us
+          </h1>
+        </div>
+      </section>
+
+      {/* 3-Column Layout: Info | Form | Service Checkboxes */}
+      <section className="bg-white section-padding" style={{ paddingTop: 0 }}>
+        <div className="container-custom">
+          <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+            {/* Column 1: Contact Info */}
             <div>
-              <h2
-                className="contact-animate font-display mb-8"
-                style={{
-                  fontSize: "clamp(28px, 3vw, 44px)",
-                  fontWeight: 300,
-                  letterSpacing: "-0.5px",
-                  color: "#212123",
-                  opacity: 0,
-                }}
-              >
-                we&apos;d love to hear about your project
-              </h2>
-
-              <p
-                className="contact-animate text-[#6B6B6B] text-base leading-relaxed mb-8"
-                style={{ opacity: 0 }}
-              >
-                Whether you have a clear vision or are just starting to explore
-                possibilities, we&apos;re here to help. Get in touch and we&apos;ll
-                arrange a consultation at your property.
-              </p>
-
-              <div className="contact-animate space-y-6" style={{ opacity: 0 }}>
+              <div className="contact-animate space-y-8" style={{ opacity: 0 }}>
                 <div>
-                  <h3 className="text-sm font-semibold text-[#212123] mb-2 uppercase tracking-wider">Phone</h3>
-                  <p className="text-[#6B6B6B]">020 1234 5678</p>
+                  <h3
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      color: "#212123",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    Phone
+                  </h3>
+                  <p style={{ fontSize: "16px", lineHeight: "28.8px", color: "#212123" }}>020 1234 5678</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-[#212123] mb-2 uppercase tracking-wider">Email</h3>
-                  <p className="text-[#6B6B6B]">hello@greenscape.co.uk</p>
+                  <h3
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      color: "#212123",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    Email
+                  </h3>
+                  <p style={{ fontSize: "16px", lineHeight: "28.8px", color: "#212123" }}>hello@greenscape.co.uk</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-[#212123] mb-2 uppercase tracking-wider">Studio</h3>
-                  <p className="text-[#6B6B6B]">London & South East, UK</p>
+                  <h3
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      color: "#212123",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    Design Studio
+                  </h3>
+                  <p style={{ fontSize: "16px", lineHeight: "28.8px", color: "#212123" }}>
+                    London & South East<br />
+                    United Kingdom
+                  </p>
                 </div>
               </div>
 
@@ -85,52 +104,91 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right: Contact Form */}
+            {/* Column 2: Contact Form */}
             <div>
+              <h2
+                className="contact-animate font-display mb-10"
+                style={{
+                  fontSize: "var(--h3-size)",
+                  fontWeight: 400,
+                  letterSpacing: "var(--h3-letter-spacing)",
+                  color: "#212123",
+                  opacity: 0,
+                }}
+              >
+                start the process today
+              </h2>
+
               <form
                 className="space-y-6"
                 onSubmit={(e) => e.preventDefault()}
               >
-                <div className="contact-animate" style={{ opacity: 0 }}>
-                  <label className="block text-sm text-[#212123] mb-2">Name</label>
-                  <input
-                    type="text"
-                    className="w-full border-b border-[#212123]/20 py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
-                    placeholder="Your full name"
-                  />
+                <div className="contact-animate grid grid-cols-2 gap-6" style={{ opacity: 0 }}>
+                  <div>
+                    <input
+                      type="text"
+                      className="w-full border-b border-[#A0A1A5] py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
+                      placeholder="First Name"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      className="w-full border-b border-[#A0A1A5] py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
+                      placeholder="Last Name"
+                    />
+                  </div>
                 </div>
 
                 <div className="contact-animate" style={{ opacity: 0 }}>
-                  <label className="block text-sm text-[#212123] mb-2">Email</label>
-                  <input
-                    type="email"
-                    className="w-full border-b border-[#212123]/20 py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </div>
-
-                <div className="contact-animate" style={{ opacity: 0 }}>
-                  <label className="block text-sm text-[#212123] mb-2">Phone</label>
                   <input
                     type="tel"
-                    className="w-full border-b border-[#212123]/20 py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
-                    placeholder="Your phone number"
+                    className="w-full border-b border-[#A0A1A5] py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
+                    placeholder="Phone"
                   />
                 </div>
 
                 <div className="contact-animate" style={{ opacity: 0 }}>
-                  <label className="block text-sm text-[#212123] mb-2">Message</label>
+                  <input
+                    type="email"
+                    className="w-full border-b border-[#A0A1A5] py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
+                    placeholder="Email"
+                  />
+                </div>
+
+                <div className="contact-animate" style={{ opacity: 0 }}>
+                  <input
+                    type="text"
+                    className="w-full border-b border-[#A0A1A5] py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
+                    placeholder="Address"
+                  />
+                </div>
+
+                <div className="contact-animate" style={{ opacity: 0 }}>
+                  <input
+                    type="text"
+                    className="w-full border-b border-[#A0A1A5] py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors"
+                    placeholder="City"
+                  />
+                </div>
+
+                <div className="contact-animate" style={{ opacity: 0 }}>
                   <textarea
-                    rows={4}
-                    className="w-full border-b border-[#212123]/20 py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors resize-none"
-                    placeholder="Tell us about your project..."
+                    rows={3}
+                    className="w-full border-b border-[#A0A1A5] py-3 text-[#212123] bg-transparent focus:border-[#212123] focus:outline-none transition-colors resize-none"
+                    placeholder="Message"
                   />
                 </div>
 
                 <div className="contact-animate pt-4" style={{ opacity: 0 }}>
                   <button
                     type="submit"
-                    className="cta-link text-lg text-[#212123]"
+                    className="cta-link"
+                    style={{
+                      fontSize: "var(--cta-text-size)",
+                      letterSpacing: "0.48px",
+                      color: "#212123",
+                    }}
                     data-cursor="link"
                   >
                     <span>Send Message</span>
@@ -139,6 +197,43 @@ export default function ContactPage() {
                   </button>
                 </div>
               </form>
+            </div>
+
+            {/* Column 3: Service Required */}
+            <div>
+              <h3
+                className="contact-animate"
+                style={{
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  color: "#212123",
+                  marginBottom: "24px",
+                  opacity: 0,
+                }}
+              >
+                Service Required
+              </h3>
+              <div className="contact-animate space-y-5" style={{ opacity: 0 }}>
+                {["Design", "Construction", "Maintenance", "Snow & Ice"].map((service) => (
+                  <label
+                    key={service}
+                    className="flex items-center gap-3 cursor-pointer group"
+                    data-cursor="link"
+                  >
+                    <input
+                      type="checkbox"
+                      className="w-5 h-5 border-2 border-[#A0A1A5] rounded-none appearance-none checked:bg-[#212123] checked:border-[#212123] transition-colors cursor-pointer"
+                      style={{ accentColor: "#212123" }}
+                    />
+                    <span
+                      className="text-[#606065] group-hover:text-[#212123] transition-colors"
+                      style={{ fontSize: "16px", lineHeight: "28.8px" }}
+                    >
+                      {service}
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
           </div>
         </div>

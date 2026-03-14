@@ -17,7 +17,7 @@ export default function InnerPageLayout({ children }: InnerPageLayoutProps) {
       <Navigation />
       <SidebarStrip />
 
-      <main style={{ marginRight: "var(--sidebar-width)" }}>
+      <main style={{ marginRight: "var(--sidebar-width)", marginBottom: "100vh", position: "relative", zIndex: 1, backgroundColor: "#ffffff" }}>
         {children}
       </main>
 

@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import InnerPageLayout from "@/components/layout/InnerPageLayout";
-import PageHero from "@/components/sections/PageHero";
 import Image from "next/image";
 import CTALink from "@/components/ui/CTALink";
 
@@ -28,10 +27,10 @@ export default function AboutPage() {
   const storyRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
+  const missionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Story section animation
       if (storyRef.current) {
         const elements = storyRef.current.querySelectorAll(".about-fade");
         gsap.fromTo(
@@ -48,7 +47,6 @@ export default function AboutPage() {
         );
       }
 
-      // Stats animation
       if (statsRef.current) {
         const items = statsRef.current.querySelectorAll(".stat-item");
         gsap.fromTo(
@@ -65,7 +63,22 @@ export default function AboutPage() {
         );
       }
 
-      // Team animation
+      if (missionRef.current) {
+        const elements = missionRef.current.querySelectorAll(".mission-fade");
+        gsap.fromTo(
+          elements,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.12,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: { trigger: missionRef.current, start: "top 70%" },
+          }
+        );
+      }
+
       if (teamRef.current) {
         const cards = teamRef.current.querySelectorAll(".team-card");
         gsap.fromTo(
@@ -87,80 +100,170 @@ export default function AboutPage() {
 
   return (
     <InnerPageLayout>
-      <PageHero
-        title="about greenscape"
-        subtitle="Creating outdoor living spaces since 2012"
-        image="/images/about-landscape.jpg"
-      />
-
-      {/* Story Section */}
-      <section className="bg-white section-padding">
-        <div className="container-custom">
-          <div ref={storyRef} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <h2
-                className="about-fade font-display mb-8"
-                style={{
-                  fontSize: "clamp(32px, 3.5vw, 52px)",
-                  fontWeight: 300,
-                  letterSpacing: "-1px",
-                  lineHeight: 1.15,
-                  color: "#212123",
-                  opacity: 0,
-                }}
+      {/* Intro Section — split layout like Cedar Springs */}
+      <section className="bg-white" style={{ paddingTop: "170px" }}>
+        <div ref={storyRef} className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "60vh" }}>
+          {/* Left: text */}
+          <div className="flex flex-col justify-center" style={{ padding: "clamp(40px, 6vw, 100px) clamp(30px, 5vw, 80px)" }}>
+            <h1
+              className="about-fade font-display"
+              style={{
+                fontSize: "var(--h1-size)",
+                fontWeight: 300,
+                letterSpacing: "var(--h1-letter-spacing)",
+                lineHeight: "var(--h1-line-height)",
+                color: "#212123",
+                marginBottom: "16px",
+                opacity: 0,
+              }}
+            >
+              about us
+            </h1>
+            <p
+              className="about-fade font-display"
+              style={{
+                fontSize: "var(--h3-size)",
+                fontWeight: 400,
+                letterSpacing: "var(--h3-letter-spacing)",
+                color: "#212123",
+                marginBottom: "32px",
+                opacity: 0,
+              }}
+            >
+              The UK&apos;s landscape resort company
+            </p>
+            <p
+              className="about-fade"
+              style={{
+                fontSize: "16px",
+                lineHeight: "28.8px",
+                color: "#212123",
+                maxWidth: "500px",
+                marginBottom: "16px",
+                opacity: 0,
+              }}
+            >
+              GreenScape was founded on a simple belief: that the best outdoor spaces are those designed around how you actually live. We don&apos;t just create gardens — we create extensions of your home that bring joy every single day.
+            </p>
+            <p
+              className="about-fade"
+              style={{
+                fontSize: "16px",
+                lineHeight: "28.8px",
+                color: "#212123",
+                maxWidth: "500px",
+                opacity: 0,
+              }}
+            >
+              From our studio in London, we serve clients across Surrey, Kent, Buckinghamshire, Berkshire and the surrounding areas. Every project is handled by our in-house team of designers, architects, and skilled craftspeople.
+            </p>
+          </div>
+          {/* Right: image with awards stat overlay */}
+          <div className="relative overflow-hidden" style={{ minHeight: "400px" }}>
+            <Image
+              src="/images/about-landscape.jpg"
+              alt="About GreenScape"
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+            {/* Gradient overlay + award stat */}
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/20" />
+            <div className="absolute bottom-12 left-12">
+              <span
+                className="font-display block text-white"
+                style={{ fontSize: "clamp(64px, 8vw, 120px)", fontWeight: 300, lineHeight: 1, letterSpacing: "-2px" }}
               >
-                we believe your home should be your favourite place in the world
-              </h2>
+                100+
+              </span>
+              <span className="text-white/80 text-sm tracking-widest uppercase block mt-2">
+                landscape awards
+              </span>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="space-y-6">
-              <p className="about-fade text-[#6B6B6B] text-base leading-relaxed" style={{ opacity: 0 }}>
-                GreenScape was founded on a simple belief: that the best outdoor spaces are those designed around how you actually live. We don&apos;t just create gardens — we create extensions of your home that bring joy every single day.
-              </p>
-              <p className="about-fade text-[#6B6B6B] text-base leading-relaxed" style={{ opacity: 0 }}>
-                From our studio in London, we serve clients across Surrey, Kent, Buckinghamshire, Berkshire and the surrounding areas. Every project is handled by our in-house team of designers, architects, and skilled craftspeople.
-              </p>
-              <p className="about-fade text-[#6B6B6B] text-base leading-relaxed" style={{ opacity: 0 }}>
-                We take on a limited number of projects each year, ensuring every client receives our complete attention. The result? Landscapes that are thoughtfully designed, expertly engineered, and beautifully built.
-              </p>
-              <div className="about-fade pt-4" style={{ opacity: 0 }}>
-                <CTALink label="View Our Projects" href="/projects" />
-              </div>
+      {/* Mission & Values — Dark section */}
+      <section style={{ backgroundColor: "#212123" }}>
+        <div ref={missionRef} className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "60vh" }}>
+          {/* Left: Image */}
+          <div className="relative overflow-hidden" style={{ minHeight: "400px" }}>
+            <Image
+              src="/images/projects/project-07.jpg"
+              alt="Our mission"
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          {/* Right: Text */}
+          <div className="flex flex-col justify-center" style={{ padding: "clamp(40px, 6vw, 100px) clamp(30px, 5vw, 80px)" }}>
+            <p
+              className="mission-fade"
+              style={{
+                fontSize: "var(--cta-text-size)",
+                fontWeight: 400,
+                letterSpacing: "0.48px",
+                color: "#A0A1A5",
+                marginBottom: "16px",
+                opacity: 0,
+              }}
+            >
+              Our Mission & Values
+            </p>
+            <h2
+              className="mission-fade font-display"
+              style={{
+                fontSize: "var(--h2-size)",
+                fontWeight: 400,
+                letterSpacing: "var(--h2-letter-spacing)",
+                lineHeight: "var(--h2-line-height)",
+                color: "#ffffff",
+                marginBottom: "32px",
+                opacity: 0,
+              }}
+            >
+              we believe your home should be your favourite place in the world
+            </h2>
+            <p
+              className="mission-fade"
+              style={{
+                fontSize: "16px",
+                lineHeight: "28.8px",
+                color: "#A0A1A5",
+                marginBottom: "16px",
+                opacity: 0,
+              }}
+            >
+              We take on a limited number of projects each year, ensuring every client receives our complete attention. The result? Landscapes that are thoughtfully designed, expertly engineered, and beautifully built.
+            </p>
+            <div className="mission-fade" style={{ opacity: 0 }}>
+              <CTALink label="View Our Projects" href="/projects" variant="light" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="bg-[#212123]">
+      <section className="bg-white">
         <div className="container-custom py-20">
           <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
               <div key={i} className="stat-item text-center" style={{ opacity: 0 }}>
                 <span
-                  className="font-display text-white block"
-                  style={{ fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 300 }}
+                  className="font-display text-[#212123] block"
+                  style={{ fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 300, letterSpacing: "-1px" }}
                 >
                   {stat.number}
                 </span>
-                <span className="text-white/50 text-sm tracking-wider uppercase mt-2 block">
+                <span className="text-[#606065] text-sm tracking-wider uppercase mt-2 block">
                   {stat.label}
                 </span>
               </div>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Full-width Image */}
-      <section className="relative h-[50vh] min-h-[350px] overflow-hidden">
-        <Image
-          src="/images/projects/project-07.jpg"
-          alt="GreenScape landscape project"
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
       </section>
 
       {/* Team Section */}
@@ -196,7 +299,7 @@ export default function AboutPage() {
                 >
                   {member.name}
                 </h3>
-                <p className="text-[#6B6B6B] text-sm mt-1">{member.role}</p>
+                <p className="text-[#606065] text-sm mt-1">{member.role}</p>
               </div>
             ))}
           </div>
@@ -206,7 +309,7 @@ export default function AboutPage() {
       {/* Bottom CTA */}
       <section className="bg-white pb-20">
         <div className="container-custom">
-          <div className="border-t border-[#212123]/10 pt-12">
+          <div className="border-t border-[#A0A1A5] pt-12">
             <h2
               className="font-display mb-6"
               style={{

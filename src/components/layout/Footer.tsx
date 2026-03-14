@@ -65,8 +65,22 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-white text-[#212123]" id="contact" style={{ marginRight: "var(--sidebar-width)" }}>
-      {/* Taglines - full width (matching Cedar Springs — no right-side logo here) */}
+    <footer
+      ref={footerRef}
+      className="bg-white text-[#212123]"
+      id="contact"
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: -1,
+      }}
+    >
+      {/* Top border */}
+      <div className="w-full h-px bg-[#A0A1A5]" />
+
+      {/* Taglines - full width */}
       <div className="container-custom section-padding pb-12">
         <div ref={taglinesRef}>
           {footerData.taglines.map((line, i) => (
@@ -95,7 +109,7 @@ export default function Footer() {
 
       {/* Divider */}
       <div className="container-custom">
-        <div ref={dividerRef} className="w-full h-px bg-[#212123]/10" style={{ transformOrigin: "left", transform: "scaleX(0)" }} />
+        <div ref={dividerRef} className="w-full h-px bg-[#A0A1A5]" style={{ transformOrigin: "left", transform: "scaleX(0)" }} />
       </div>
 
       {/* Navigation grid with logo + social on right */}
@@ -103,7 +117,7 @@ export default function Footer() {
         {/* Contact column */}
         <div className="footer-col col-span-2 md:col-span-1">
           <h4 className="text-sm font-semibold text-[#212123] mb-4">Contact</h4>
-          <div className="space-y-2 text-sm text-[#6B6B6B]">
+          <div className="space-y-2 text-sm text-[#606065]">
             <p>{footerData.contact.phone}</p>
             <p>{footerData.contact.email}</p>
             <p>{footerData.contact.address}</p>
@@ -119,7 +133,7 @@ export default function Footer() {
                   <a
                     href={link.href}
                     onClick={(e) => smoothScrollTo(e, link.href)}
-                    className="text-sm text-[#6B6B6B] hover:text-[#212123] transition-colors duration-300"
+                    className="text-sm text-[#606065] hover:text-[#212123] transition-colors duration-300"
                     data-cursor="link"
                   >
                     {link.label}
@@ -156,17 +170,17 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="container-custom">
-        <div className="w-full h-px bg-[#212123]/10" />
+        <div className="w-full h-px bg-[#A0A1A5]" />
       </div>
       <div className="container-custom py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-[#6B6B6B]">
+        <p className="text-xs text-[#606065]">
           &copy; {new Date().getFullYear()} GreenScape Landscapes
         </p>
         <div className="flex items-center gap-6">
-          <a href="/privacy" className="text-xs text-[#6B6B6B] hover:text-[#212123] transition-colors" data-cursor="link">privacy policy</a>
-          <a href="/accessibility" className="text-xs text-[#6B6B6B] hover:text-[#212123] transition-colors" data-cursor="link">accessibility policy</a>
-          <a href="/terms" className="text-xs text-[#6B6B6B] hover:text-[#212123] transition-colors" data-cursor="link">terms and conditions</a>
-          <span className="text-xs text-[#6B6B6B]">design by: GreenScape</span>
+          <a href="/privacy" className="text-xs text-[#606065] hover:text-[#212123] transition-colors" data-cursor="link">privacy policy</a>
+          <a href="/accessibility" className="text-xs text-[#606065] hover:text-[#212123] transition-colors" data-cursor="link">accessibility policy</a>
+          <a href="/terms" className="text-xs text-[#606065] hover:text-[#212123] transition-colors" data-cursor="link">terms and conditions</a>
+          <span className="text-xs text-[#606065]">design by: GreenScape</span>
         </div>
       </div>
     </footer>
