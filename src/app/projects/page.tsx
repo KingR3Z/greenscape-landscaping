@@ -140,19 +140,6 @@ export default function ProjectsPage() {
                   >
                     {project.title}
                   </h2>
-                  <p
-                    className="project-text-reveal"
-                    style={{
-                      fontSize: "16px",
-                      lineHeight: "28.8px",
-                      color: isDark ? "rgba(255,255,255,0.8)" : "#212123",
-                      marginBottom: "40px",
-                      maxWidth: "500px",
-                      opacity: 0,
-                    }}
-                  >
-                    {project.description}
-                  </p>
                   <div className="project-text-reveal" style={{ opacity: 0 }}>
                     <a
                       href={`/projects/${project.id}`}

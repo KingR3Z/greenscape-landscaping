@@ -71,7 +71,7 @@ export default function CareersPage() {
   }, []);
 
   return (
-    <InnerPageLayout>
+    <InnerPageLayout navVariant="light">
       {/* Full-Bleed Hero */}
       <section className="relative" style={{ height: "100vh", minHeight: "600px" }}>
         <Image

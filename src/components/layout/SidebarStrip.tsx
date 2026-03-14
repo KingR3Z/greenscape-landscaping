@@ -11,26 +11,28 @@ interface SidebarStripProps {
 export default function SidebarStrip({ currentImage, nextImage }: SidebarStripProps) {
   const stripRef = useRef<HTMLDivElement>(null);
   const [pastHero, setPastHero] = useState(false);
+  const isHomepage = !!nextImage;
 
   // Track scroll position to transition sidebar from blur to solid dark
   useEffect(() => {
+    if (!isHomepage) return; // Inner pages always show solid dark
     const handleScroll = () => {
       const heroHeight = window.innerHeight;
       setPastHero(window.scrollY > heroHeight * 0.7);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomepage]);
 
   return (
     <div ref={stripRef} className="sidebar-strip hidden xl:block">
-      {/* Solid dark background (always present, visible when past hero) */}
+      {/* Solid dark background — always visible on inner pages, transitions on homepage */}
       <div
         className="absolute inset-0 bg-[#212123] transition-opacity duration-700"
-        style={{ opacity: pastHero ? 1 : 0, zIndex: 1 }}
+        style={{ opacity: (!isHomepage || pastHero) ? 1 : 0, zIndex: 1 }}
       />
 
-      {/* Blurred image preview (visible during hero) */}
+      {/* Blurred image preview (homepage hero only) */}
       {nextImage && (
         <div
           className="absolute inset-0 overflow-hidden transition-opacity duration-700"
@@ -48,18 +50,20 @@ export default function SidebarStrip({ currentImage, nextImage }: SidebarStripPr
         </div>
       )}
 
-      {/* Scroll indicator - centered vertically */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-[30%] z-10 flex flex-col items-center gap-3">
-        <span
-          className="text-white/60 text-[13px] tracking-[0.25em] lowercase"
-          style={{ writingMode: "vertical-rl" }}
-        >
-          scroll
-        </span>
-        <svg width="12" height="28" viewBox="0 0 12 28" fill="none" className="mt-2">
-          <path d="M6 0v26M1 21l5 5 5-5" stroke="white" strokeOpacity="0.5" strokeWidth="1.5" />
-        </svg>
-      </div>
+      {/* Scroll indicator - centered vertically (homepage only) */}
+      {isHomepage && (
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-[30%] z-10 flex flex-col items-center gap-3">
+          <span
+            className="text-white/60 text-[13px] tracking-[0.25em] lowercase"
+            style={{ writingMode: "vertical-rl" }}
+          >
+            scroll
+          </span>
+          <svg width="12" height="28" viewBox="0 0 12 28" fill="none" className="mt-2">
+            <path d="M6 0v26M1 21l5 5 5-5" stroke="white" strokeOpacity="0.5" strokeWidth="1.5" />
+          </svg>
+        </div>
+      )}
 
       {/* Social icons at bottom — horizontal row */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-4">

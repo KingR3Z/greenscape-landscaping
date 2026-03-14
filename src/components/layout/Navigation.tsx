@@ -4,7 +4,12 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import gsap from "gsap";
 import { mainNav } from "@/data/navigation";
 
-export default function Navigation() {
+interface NavigationProps {
+  variant?: "light" | "dark";
+}
+
+export default function Navigation({ variant = "light" }: NavigationProps) {
+  const isDarkNav = variant === "dark";
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -103,7 +108,8 @@ export default function Navigation() {
         ref={headerRef}
         className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500`}
         style={{
-          backgroundColor: scrolled ? "#212123" : "transparent",
+          backgroundColor: scrolled ? "#212123" : (isDarkNav ? "#ffffff" : "transparent"),
+          borderBottom: isDarkNav && !scrolled ? "1px solid #A0A1A5" : "none",
         }}
       >
         <div className="flex items-center h-[100px]">
@@ -129,7 +135,7 @@ export default function Navigation() {
                 fontSize: "clamp(20px, 1.5vw, 26px)",
                 fontWeight: 300,
                 letterSpacing: "-0.5px",
-                color: "#ffffff",
+                color: isDarkNav && !scrolled ? "#212123" : "#ffffff",
                 opacity: 0,
                 transition: "color 0.5s ease",
               }}
@@ -146,7 +152,7 @@ export default function Navigation() {
             >
               <a
                 href={mainNav.cta.href}
-                className="cta-link text-white transition-colors duration-500"
+                className={`cta-link transition-colors duration-500 ${isDarkNav && !scrolled ? "text-[#212123]" : "text-white"}`}
                 style={{
                   fontSize: "clamp(18px, 1.5vw, 24px)",
                   letterSpacing: "0.48px",
@@ -199,18 +205,18 @@ export default function Navigation() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block w-6 h-px transition-all duration-300 origin-center bg-white ${
-                menuOpen ? "rotate-45 translate-y-[6px]" : ""
+              className={`block w-6 h-px transition-all duration-300 origin-center ${isDarkNav && !scrolled ? "bg-[#212123]" : "bg-white"} ${
+                menuOpen ? "rotate-45 translate-y-[6px] !bg-white" : ""
               }`}
             />
             <span
-              className={`block w-6 h-px transition-all duration-300 origin-center bg-white ${
+              className={`block w-6 h-px transition-all duration-300 origin-center ${isDarkNav && !scrolled ? "bg-[#212123]" : "bg-white"} ${
                 menuOpen ? "opacity-0 scale-x-0" : ""
               }`}
             />
             <span
-              className={`block w-6 h-px transition-all duration-300 origin-center bg-white ${
-                menuOpen ? "-rotate-45 -translate-y-[6px]" : ""
+              className={`block w-6 h-px transition-all duration-300 origin-center ${isDarkNav && !scrolled ? "bg-[#212123]" : "bg-white"} ${
+                menuOpen ? "-rotate-45 -translate-y-[6px] !bg-white" : ""
               }`}
             />
           </button>

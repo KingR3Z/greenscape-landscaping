@@ -118,7 +118,7 @@ img { transition: opacity 0.3s ease; }
   width: 1px;
   height: 1.2em;
   background: currentColor;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 .cta-link .cta-arrow {
   transition: transform 0.3s ease;

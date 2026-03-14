@@ -8,13 +8,14 @@ import Footer from "@/components/layout/Footer";
 
 interface InnerPageLayoutProps {
   children: React.ReactNode;
+  navVariant?: "light" | "dark";
 }
 
-export default function InnerPageLayout({ children }: InnerPageLayoutProps) {
+export default function InnerPageLayout({ children, navVariant = "dark" }: InnerPageLayoutProps) {
   return (
     <LenisProvider>
       <CustomCursor />
-      <Navigation />
+      <Navigation variant={navVariant} />
       <SidebarStrip />
 
       <main style={{ marginRight: "var(--sidebar-width)", marginBottom: "100vh", position: "relative", zIndex: 1, backgroundColor: "#ffffff" }}>
