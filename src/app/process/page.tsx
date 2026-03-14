@@ -208,19 +208,22 @@ export default function ProcessPage() {
               className="object-cover"
               sizes="50vw"
             />
-            {/* Badge overlay */}
-            <div
-              className="absolute bottom-8 right-8 flex items-center gap-3 px-6 py-4"
-              style={{ background: "rgba(255,255,255,0.95)" }}
-            >
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#212123">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                ))}
+            {/* Badge overlay — white text on image like Cedar Springs */}
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
+            <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 flex items-center gap-2">
+              <span
+                className="font-display text-white"
+                style={{ fontSize: "clamp(48px, 5vw, 72px)", fontWeight: 300, lineHeight: 1 }}
+              >
+                5
+              </span>
+              <div className="flex flex-col">
+                <span className="text-white text-sm flex items-center gap-1">
+                  star
+                  <span className="flex text-white">★★★★★</span>
+                </span>
+                <span className="text-white text-sm">landscapes</span>
               </div>
-              <span style={{ fontSize: "14px", color: "#212123", fontWeight: 500 }}>5 star landscapes</span>
             </div>
           </div>
         </div>
