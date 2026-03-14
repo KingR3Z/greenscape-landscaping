@@ -12,7 +12,6 @@ if (typeof window !== "undefined") {
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
-  const taglinesRef = useRef<HTMLDivElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
@@ -34,13 +33,6 @@ export default function Footer() {
   useEffect(() => {
     if (!footerRef.current) return;
     const ctx = gsap.context(() => {
-      if (taglinesRef.current) {
-        const lines = taglinesRef.current.querySelectorAll("h3");
-        gsap.fromTo(lines, { opacity: 0, y: 50 }, {
-          opacity: 1, y: 0, stagger: 0.12, duration: 1, ease: "power3.out",
-          scrollTrigger: { trigger: taglinesRef.current, start: "top 80%" },
-        });
-      }
       if (bannerRef.current) {
         gsap.fromTo(bannerRef.current, { opacity: 0, y: 20 }, {
           opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
@@ -80,30 +72,8 @@ export default function Footer() {
       {/* Top border */}
       <div className="w-full h-px bg-[#A0A1A5]" />
 
-      {/* Taglines - full width */}
-      <div className="container-custom section-padding pb-12">
-        <div ref={taglinesRef}>
-          {footerData.taglines.map((line, i) => (
-            <h3
-              key={i}
-              className="font-display"
-              style={{
-                fontSize: "clamp(36px, 4.5vw, 64px)",
-                fontWeight: 400,
-                letterSpacing: "-1.28px",
-                lineHeight: 1.17,
-                color: "#212123",
-                opacity: 0,
-              }}
-            >
-              {line}
-            </h3>
-          ))}
-        </div>
-      </div>
-
       {/* Contact banner */}
-      <div ref={bannerRef} className="container-custom pb-12" style={{ opacity: 0 }}>
+      <div ref={bannerRef} className="container-custom" style={{ paddingTop: "clamp(40px, 4vw, 60px)", paddingBottom: "clamp(40px, 4vw, 60px)", opacity: 0 }}>
         <CTALink label={footerData.contactBanner} href="/contact" size="sm" />
       </div>
 

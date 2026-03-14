@@ -13,6 +13,7 @@ import About from "@/components/sections/About";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import BlueprintReveal from "@/components/sections/BlueprintReveal";
 import FullCTA from "@/components/sections/FullCTA";
+import FooterTaglines from "@/components/sections/FooterTaglines";
 
 export default function Home() {
   const [preloaderDone, setPreloaderDone] = useState(false);
@@ -38,6 +39,7 @@ export default function Home() {
         <FeaturedProjects />
         <BlueprintReveal />
         <FullCTA />
+        <FooterTaglines />
       </main>
 
       <Footer />
