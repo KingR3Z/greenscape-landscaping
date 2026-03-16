@@ -36,12 +36,11 @@ export default function ProjectsPage() {
         if (img) {
           gsap.fromTo(
             img,
-            { opacity: 0, scale: 1.05 },
+            { clipPath: "inset(100% 0 0 0)", opacity: 1 },
             {
-              opacity: 1,
-              scale: 1,
-              duration: 1.2,
-              ease: "power3.out",
+              clipPath: "inset(0% 0 0 0)",
+              duration: 1.4,
+              ease: "power4.inOut",
               scrollTrigger: { trigger: section, start: "top 70%" },
             }
           );
@@ -95,7 +94,7 @@ export default function ProjectsPage() {
                   className={`relative overflow-hidden ${imageLeft ? "order-1" : "order-1 lg:order-2"}`}
                   style={{ minHeight: "400px" }}
                 >
-                  <div className="project-img-reveal absolute inset-0" style={{ opacity: 0 }}>
+                  <div className="project-img-reveal absolute inset-0" style={{ clipPath: "inset(100% 0 0 0)" }}>
                     <Image
                       src={project.image}
                       alt={project.title}

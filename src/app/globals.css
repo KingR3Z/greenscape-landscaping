@@ -21,8 +21,8 @@
   --color-grey-200: #cccccc;
   --color-grey-100: #e5e5e5;
   --font-display: var(--font-epilogue);
-  --font-body: var(--font-dm-sans);
-  --font-accent: var(--font-playfair);
+  --font-body: var(--font-inter);
+  --font-accent: var(--font-epilogue);
 }
 
 :root {
@@ -62,7 +62,7 @@ html.lenis, html.lenis body { height: auto; }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), "DM Sans", sans-serif;
+  font-family: var(--font-body), "Inter", sans-serif;
   font-size: 16px;
   line-height: 1.8;
   overflow-x: hidden;
@@ -110,7 +110,7 @@ img { transition: opacity 0.3s ease; }
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-body), "DM Sans", sans-serif;
+  font-family: var(--font-body), "Inter", sans-serif;
   transition: gap 0.3s ease;
 }
 .cta-link:hover { gap: 18px; }
@@ -125,6 +125,34 @@ img { transition: opacity 0.3s ease; }
 }
 .cta-link:hover .cta-arrow {
   transform: translateX(4px);
+}
+
+/* CTA underline progress bar */
+.cta-nav-link {
+  position: relative;
+}
+.cta-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.cta-nav-link.scrolled::after {
+  width: 100%;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Clip-path image reveal */
+.clip-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.clip-reveal.revealed {
+  clip-path: inset(0 0 0 0);
 }
 
 /* Sidebar strip */

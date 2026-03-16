@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Epilogue, Playfair_Display, DM_Sans } from "next/font/google";
+import { Epilogue, Inter } from "next/font/google";
 import "./globals.css";
 
 const epilogue = Epilogue({
@@ -8,15 +8,9 @@ const epilogue = Epilogue({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -35,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${epilogue.variable} ${playfair.variable} ${dmSans.variable} antialiased`}>
+      <body className={`${epilogue.variable} ${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

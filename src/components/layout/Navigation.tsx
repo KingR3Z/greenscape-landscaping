@@ -130,18 +130,35 @@ export default function Navigation({ variant = "light" }: NavigationProps) {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="font-display"
+              className="font-display flex flex-col leading-none"
               style={{
-                fontSize: "clamp(20px, 1.5vw, 26px)",
-                fontWeight: 300,
-                letterSpacing: "-0.5px",
                 color: isDarkNav && !scrolled ? "#212123" : "#ffffff",
                 opacity: 0,
                 transition: "color 0.5s ease",
               }}
               data-cursor="link"
             >
-              GreenScape
+              <span
+                style={{
+                  fontSize: "clamp(20px, 1.5vw, 26px)",
+                  fontWeight: 300,
+                  letterSpacing: "-0.5px",
+                }}
+              >
+                GreenScape
+              </span>
+              <span
+                style={{
+                  fontSize: "clamp(7px, 0.55vw, 9px)",
+                  fontWeight: 400,
+                  letterSpacing: "0.25em",
+                  textTransform: "uppercase",
+                  opacity: 0.7,
+                  marginTop: "2px",
+                }}
+              >
+                Landscapes
+              </span>
             </a>
 
             {/* CTA */}
@@ -152,7 +169,7 @@ export default function Navigation({ variant = "light" }: NavigationProps) {
             >
               <a
                 href={mainNav.cta.href}
-                className={`cta-link transition-colors duration-500 ${isDarkNav && !scrolled ? "text-[#212123]" : "text-white"}`}
+                className={`cta-link cta-nav-link transition-colors duration-500 ${isDarkNav && !scrolled ? "text-[#212123]" : "text-white"} ${scrolled ? "scrolled" : ""}`}
                 style={{
                   fontSize: "clamp(18px, 1.5vw, 24px)",
                   letterSpacing: "0.48px",

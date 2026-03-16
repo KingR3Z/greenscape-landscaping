@@ -94,4 +94,35 @@ export function createParallax(
   });
 }
 
+export function createClipReveal(
+  element: Element,
+  options?: {
+    direction?: "up" | "left" | "right";
+    duration?: number;
+    trigger?: Element;
+    start?: string;
+  }
+) {
+  const dir = options?.direction ?? "up";
+  const fromClip =
+    dir === "up" ? "inset(100% 0 0 0)" :
+    dir === "left" ? "inset(0 100% 0 0)" :
+    "inset(0 0 0 100%)";
+
+  return gsap.fromTo(
+    element,
+    { clipPath: fromClip },
+    {
+      clipPath: "inset(0% 0% 0% 0%)",
+      duration: options?.duration ?? 1.4,
+      ease: "power4.inOut",
+      scrollTrigger: {
+        trigger: options?.trigger ?? element,
+        start: options?.start ?? "top 70%",
+        toggleActions: "play none none none",
+      },
+    }
+  );
+}
+
 export { gsap, ScrollTrigger };
