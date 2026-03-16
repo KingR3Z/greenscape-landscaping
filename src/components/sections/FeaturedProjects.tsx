@@ -14,7 +14,6 @@ export default function FeaturedProjects() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const headingRef = useRef<HTMLHeadingElement>(null);
 
   const projects = featuredProjects;
 
@@ -84,48 +83,9 @@ export default function FeaturedProjects() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [goNext, goPrev]);
 
-  // Heading animation
-  useEffect(() => {
-    if (!headingRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-          },
-        }
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section ref={sectionRef} className="relative bg-white" id="projects">
-      {/* Section heading */}
-      <div className="container-custom pt-20 pb-8">
-        <h2
-          ref={headingRef}
-          className="font-display"
-          style={{
-            fontSize: 'var(--h1-size)',
-            fontWeight: 'var(--h1-weight)',
-            letterSpacing: 'var(--h1-letter-spacing)',
-            lineHeight: 'var(--h1-line-height)',
-            color: '#212123',
-            opacity: 0,
-          }}
-        >
-          Featured Project
-        </h2>
-      </div>
-
       {/* Carousel — extends behind sidebar like Cedar Springs */}
       <div
         ref={slidesContainerRef}

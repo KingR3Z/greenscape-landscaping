@@ -22,9 +22,9 @@ export default function BlueprintReveal() {
         const words = textRef.current.querySelectorAll('.word');
         gsap.fromTo(
           words,
-          { opacity: 0.05 },
+          { opacity: 0.15 },
           {
-            opacity: 0.25,
+            opacity: 1,
             stagger: 0.08,
             ease: 'none',
             scrollTrigger: {
@@ -147,7 +147,7 @@ export default function BlueprintReveal() {
             }}
           >
             {words.map((word, i) => (
-              <span key={i} className="word inline-block mr-[0.3em]" style={{ opacity: 0.05 }}>
+              <span key={i} className="word inline-block mr-[0.3em]" style={{ opacity: 0.15 }}>
                 {word}
               </span>
             ))}

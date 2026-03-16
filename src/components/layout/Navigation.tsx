@@ -127,8 +127,10 @@ export default function Navigation({ variant = "light" }: NavigationProps) {
               ref={logoRef}
               href="/"
               onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
               }}
               className="font-display flex flex-col leading-none"
               style={{
